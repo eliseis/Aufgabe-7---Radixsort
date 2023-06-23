@@ -50,7 +50,28 @@ public final class BinaryRadixSort {
     }
 
     public static void lastSort(BinaryBucket from, int[] to) {
-        from.logArray(to::insertRight);
+        int size = from.size();
+
+        // Negative Zahlen nach vorne in das Ergebnis-Array einsortieren
+        int index = 0;
+        for (int i = size - 1; i >= 0; i--) {
+            int number = from.get(i);
+            if (number < 0) {
+                to[index++] = number;
+            } else {
+                break;
+            }
+        }
+
+        // Positive Zahlen nach hinten in das Ergebnis-Array einsortieren
+        for (int i = 0; i < size; i++) {
+            int number = from.get(i);
+            if (number >= 0) {
+                to[index++] = number;
+            } else {
+                break;
+            }
+        }
     }
 
     public static void sort(int[] elements, Result result) {
@@ -68,7 +89,6 @@ public final class BinaryRadixSort {
         }
 
         lastSort(bucket1, elements);
-
     }
 
     public static void main(String[] args) {
