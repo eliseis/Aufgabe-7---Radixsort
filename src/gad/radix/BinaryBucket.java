@@ -4,30 +4,27 @@ public class BinaryBucket {
 
 	private int[] bucket;
 	private int size;
+	private int mid;
 
 	public BinaryBucket(int size) {
 		this.bucket = new int[size];
 		this.size = 0;
+		this.mid = size;
 
 	}
 
 	public void insertLeft(int number) {
-		bucket[size] = number;
+		bucket[--mid] = number;
 		size++;
 
 	}
 
 	public void insertRight(int number) {
-		for (int i = size; i > 0; i--) {
-			bucket[i] = bucket[i - 1];
-		}
-		bucket[0] = number;
-		size++;
-
+		bucket[size++] = number;
 	}
 
 	public int getMid() {
-		return bucket[size];
+		return mid;
 	}
 
 	public void logArray(Result result) {
