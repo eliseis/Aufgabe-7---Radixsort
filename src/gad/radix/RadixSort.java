@@ -10,7 +10,6 @@ public final class RadixSort {
     }
 
     public static int key(int element, int decPlace) {
-
         return (element / (int) Math.pow(10, decPlace)) % 10;
     }
 
