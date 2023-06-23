@@ -9,18 +9,65 @@ public final class BinaryRadixSort {
     }
 
     public static int key(int element, int binPlace) {
-        return 0;
+        return (element >> binPlace) & 1;
     }
 
     public static void kSort(BinaryBucket from, BinaryBucket to, int binPlace) {
+        int size = from.size();
 
+        // Zähler für die Anzahl der Zahlen mit 0 an der angegebenen Stelle
+        int countZero = 0;
+
+        // Zahlen mit 0 an der angegebenen Stelle nach vorne in to sortieren
+        for (int i = 0; i < size; i++) {
+            int number = from.get(i);
+            int k = key(number, binPlace);
+            if (k == 0) {
+                to.insertLeft(number);
+                countZero++;
+            }
+        }
+
+        // Zahlen mit 1 an der angegebenen Stelle nach hinten in to sortieren
+        for (int i = 0; i < size; i++) {
+            int number = from.get(i);
+            int k = key(number, binPlace);
+            if (k == 1) {
+                to.insertRight(number);
+            }
+        }
+
+        // Clear the from bucket
+        from.clear();
+
+        // Fehlende 0en in from einfügen
+        for (int i = 0; i < countZero; i++) {
+            from.insertLeft(to.get(i));
+        }
+
+        // Clear the to bucket
+        to.clear();
     }
 
     public static void lastSort(BinaryBucket from, int[] to) {
-
+        from.logArray(to::insertRight);
     }
 
     public static void sort(int[] elements, Result result) {
+        BinaryBucket bucket1 = new BinaryBucket(elements.length);
+        BinaryBucket bucket2 = new BinaryBucket(elements.length);
+
+        for (int binPlace = 0; binPlace < 32; binPlace++) {
+            if (binPlace % 2 == 0) {
+                kSort(bucket1, bucket2, binPlace);
+                result.logArray(bucket2.toArray());
+            } else {
+                kSort(bucket2, bucket1, binPlace);
+                result.logArray(bucket1.toArray());
+            }
+        }
+
+        lastSort(bucket1, elements);
 
     }
 
