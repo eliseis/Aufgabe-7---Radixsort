@@ -10,11 +10,25 @@ public final class RadixSort {
     }
 
     public static int key(int element, int decPlace) {
-        return 0;
+
+        return (element / (int) Math.pow(10, decPlace)) % 10;
     }
 
     public static int getMaxDecimalPlaces(int[] elements) {
-        return 0;
+
+        int max = 0;
+        for (int element : elements) {
+            int numDigits = 1; // Mindestens eine Ziffer vorhanden (0)
+            int temp = Math.abs(element);
+            while (temp >= 10) {
+                temp /= 10;
+                numDigits++;
+            }
+            if (numDigits > max) {
+                max = numDigits;
+            }
+        }
+        return max;
     }
 
     public static void concatenate(List<Integer>[] buckets, int[] elements) {
