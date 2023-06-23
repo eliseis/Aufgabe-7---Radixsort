@@ -12,7 +12,8 @@ public class BinaryBucket {
 	}
 
 	public void insertLeft(int number) {
-		bucket[size++] = number;
+		bucket[size] = number;
+		size++;
 
 	}
 
@@ -26,7 +27,7 @@ public class BinaryBucket {
 	}
 
 	public int getMid() {
-		return bucket[size / 2];
+		return bucket[size];
 	}
 
 	public void logArray(Result result) {
