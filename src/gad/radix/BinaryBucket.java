@@ -5,11 +5,13 @@ public class BinaryBucket {
 	private int[] bucket;
 	private int size;
 	private int mid;
+	private int s;
 
 	public BinaryBucket(int size) {
 		this.bucket = new int[size];
 		this.size = 0;
 		this.mid = 0;
+		this.s = bucket.length - 1;
 
 	}
 
@@ -20,7 +22,7 @@ public class BinaryBucket {
 	}
 
 	public void insertRight(int number) {
-		bucket[size++] = number;
+		bucket[s--] = number;
 	}
 
 	public int getMid() {
