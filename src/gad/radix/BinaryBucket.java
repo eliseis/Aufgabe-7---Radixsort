@@ -9,12 +9,12 @@ public class BinaryBucket {
 	public BinaryBucket(int size) {
 		this.bucket = new int[size];
 		this.size = 0;
-		this.mid = size;
+		this.mid = 0;
 
 	}
 
 	public void insertLeft(int number) {
-		bucket[--mid] = number;
+		bucket[mid++] = number;
 		size++;
 
 	}
