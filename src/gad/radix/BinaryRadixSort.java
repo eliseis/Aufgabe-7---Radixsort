@@ -34,17 +34,10 @@ public final class BinaryRadixSort {
                 tempBucket.insertRight(number);
             }
         }
-        from.clear();
-        // Kopiere die Zahlen aus dem tempBucket zurück in den from-Bucket
-        for (int i = 0; i < tempBucket.size(); i++) {
-            int number = tempBucket.get(i);
-            from.insertLeft(number);
-        }
-
         // Kopiere die Zahlen aus dem tempBucket in den to-Bucket
         for (int i = 0; i < tempBucket.size(); i++) {
             int number = tempBucket.get(i);
-            to.insertRight(number);
+            to.insertLeft(number);
         }
     }
 
