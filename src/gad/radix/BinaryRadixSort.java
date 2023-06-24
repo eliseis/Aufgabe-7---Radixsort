@@ -34,7 +34,7 @@ public final class BinaryRadixSort {
         }
 
         for (int i = 0; i < onesBucket.size(); i++) {
-            to.insertLeft(onesBucket.get(i));
+            to.insertRight(onesBucket.get(i));
         }
     }
 
