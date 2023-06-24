@@ -30,11 +30,11 @@ public final class BinaryRadixSort {
 
         // Füge die Zahlen aus den beiden Buckets in den to-Bucket zusammen
         for (int i = 0; i < zerosBucket.size(); i++) {
-            to.insertLeft(zerosBucket.get(i));
+            to.insertRight(zerosBucket.get(i));
         }
 
         for (int i = 0; i < onesBucket.size(); i++) {
-            to.insertRight(onesBucket.get(i));
+            to.insertLeft(onesBucket.get(i));
         }
     }
 
