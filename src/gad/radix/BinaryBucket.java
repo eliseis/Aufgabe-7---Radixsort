@@ -45,7 +45,15 @@ public class BinaryBucket {
 		mid = 0;
 		size = 0;
 		s = bucket.length - 1;
-
+	}
+	public void setsize(int a){
+		size = a;
+	}
+	public void sets(int a){
+		s = a;
+	}
+	public void setmid(int a){
+		mid = a;
 	}
 	public int[] toArray() {
 		int[] array = new int[size];
