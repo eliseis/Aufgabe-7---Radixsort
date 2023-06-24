@@ -38,12 +38,7 @@ public final class BinaryRadixSort {
     }
 
     public static void lastSort(BinaryBucket from, int[] to) {
-        from.clear();
-        for (int i = 0; i < to.length; i++){
-            from.insertLeft(to[i]);
-        }
         int size = from.size();
-
         // Negative Zahlen nach vorne in das Ergebnis-Array einsortieren
         int index = 0;
         for (int i = size - 1; i >= 0; i--) {
