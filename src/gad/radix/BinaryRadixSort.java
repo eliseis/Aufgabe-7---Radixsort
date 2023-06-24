@@ -71,8 +71,6 @@ public final class BinaryRadixSort {
 
         for (int i = 0; i < 32; i++) {
             kSort(bucket1, bucket2, i);
-            result.logArray(bucket2.getBucket());
-
             BinaryBucket temp = bucket1;
             bucket1 = bucket2;
             bucket2 = temp;
