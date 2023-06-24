@@ -13,8 +13,7 @@ public final class BinaryRadixSort {
     }
 
     public static void kSort(BinaryBucket from, BinaryBucket to, int binPlace) {
-        // Füge die Zahlen mit Ziffer 0 in den tempBucket ein
-        for (int i = 0; i < from.getMid()   ; i++) {
+        for (int i = 0; i < from.getMid(); i++) {
             int number = from.get(i);
             int key = key(number, binPlace);
             if (key == 0) {
@@ -39,6 +38,7 @@ public final class BinaryRadixSort {
     }
 
     public static void lastSort(BinaryBucket from, int[] to) {
+        from.clear();
         for (int i = 0; i < to.length; i++){
             from.insertLeft(to[i]);
         }
@@ -92,11 +92,11 @@ public final class BinaryRadixSort {
     }
 
     public static void main(String[] args) {
-        int[] test = new int[3];
+        int[] test = new int[6];
         Random random = new Random();
-        for (int i = 0; i < test.length; i++) {
-            test[i] = random.nextInt(Integer.MAX_VALUE);
-        }
+        //for (int i = 0; i < test.length; i++) {
+        //    test[i] = random.nextInt(Integer.MAX_VALUE);
+        //}
         int[] testTwo = Arrays.copyOf(test, test.length);
 
         long start = System.nanoTime();

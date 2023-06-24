@@ -23,6 +23,7 @@ public class BinaryBucket {
 
 	public void insertRight(int number) {
 		bucket[s--] = number;
+		size++;
 	}
 
 	public int getMid() {
