@@ -63,26 +63,20 @@ public final class BinaryRadixSort {
 
     public static void sort(int[] elements, Result result) {
         BinaryBucket bucket1 = new BinaryBucket(elements.length);
+        BinaryBucket bucket2 = new BinaryBucket(elements.length);
 
-        // Initialisiere den ersten Bucket mit den gegebenen Elementen
         for (int element : elements) {
             bucket1.insertLeft(element);
         }
 
-        // Führe kSort für jede binäre Ziffer einmal durch
         for (int i = 0; i < 32; i++) {
-            BinaryBucket bucket2 = new BinaryBucket(elements.length);
             kSort(bucket1, bucket2, i);
-
-            // Logge das Array nach jedem kSort-Aufruf
             result.logArray(bucket2.toArray());
-
-            // Tausche bucket1 und bucket2 für den nächsten Durchlauf
+            BinaryBucket temp = bucket1;
             bucket1 = bucket2;
-            bucket2 = new BinaryBucket(elements.length);
+            bucket2 = temp;
+            bucket2.clear();
         }
-
-        // Führe lastSort für die negativen Zahlen aus
         lastSort(bucket1, elements);
     }
 
