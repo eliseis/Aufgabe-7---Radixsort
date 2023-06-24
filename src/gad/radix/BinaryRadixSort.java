@@ -26,7 +26,7 @@ public final class BinaryRadixSort {
         }
 
         // Füge die Zahlen mit Ziffer 1 in den tempBucket ein
-        for (int i = 0; i < from.size(); i++) {
+        for (int i = from.size() - 1 ; i >= 0 ; i--) {
             int number = from.get(i);
             int key = key(number, binPlace);
 
