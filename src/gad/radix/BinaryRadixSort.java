@@ -60,8 +60,7 @@ public final class BinaryRadixSort {
         for (int i = 0; i < size; i++) {
             int number = from.get(i);
             if (number >= 0) {
-                to[size - secindex - 1] = number;
-                secindex++;
+                to[index++] = number;
             } else {
                 break;
             }
