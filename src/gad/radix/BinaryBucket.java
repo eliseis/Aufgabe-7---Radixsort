@@ -61,5 +61,8 @@ public class BinaryBucket {
 		System.arraycopy(bucket, 0, array, 0, size);
 		return array;
 	}
+	public int[] getBucket() {
+		return this.toArray();
+	}
 }
 
