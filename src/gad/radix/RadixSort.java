@@ -14,7 +14,6 @@ public final class RadixSort {
     }
 
     public static int getMaxDecimalPlaces(int[] elements) {
-
         int max = 0;
         for (int element : elements) {
             int numDigits = 1; // Mindestens eine Ziffer vorhanden (0)

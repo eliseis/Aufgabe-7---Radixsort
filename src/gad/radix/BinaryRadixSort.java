@@ -13,40 +13,29 @@ public final class BinaryRadixSort {
     }
 
     public static void kSort(BinaryBucket from, BinaryBucket to, int binPlace) {
-        int size = from.size();
+        BinaryBucket zerosBucket = new BinaryBucket(from.size());
+        BinaryBucket onesBucket = new BinaryBucket(from.size());
 
-        // Zähler für die Anzahl der Zahlen mit 0 an der angegebenen Stelle
-        int countZero = 0;
-
-        // Zahlen mit 0 an der angegebenen Stelle nach vorne in to sortieren
-        for (int i = 0; i < size; i++) {
+        // Durchlaufe den from-Bucket und teile die Zahlen in die beiden Buckets auf
+        for (int i = 0; i < from.size(); i++) {
             int number = from.get(i);
-            int k = key(number, binPlace);
-            if (k == 0) {
-                to.insertLeft(number);
-                countZero++;
+            int key = key(number, binPlace);
+
+            if (key == 0) {
+                zerosBucket.insertLeft(number);
+            } else {
+                onesBucket.insertRight(number);
             }
         }
 
-        // Zahlen mit 1 an der angegebenen Stelle nach hinten in to sortieren
-        for (int i = 0; i < size; i++) {
-            int number = from.get(i);
-            int k = key(number, binPlace);
-            if (k == 1) {
-                to.insertRight(number);
-            }
+        // Füge die Zahlen aus den beiden Buckets in den to-Bucket zusammen
+        for (int i = 0; i < zerosBucket.size(); i++) {
+            to.insertLeft(zerosBucket.get(i));
         }
 
-        // Clear the from bucket
-        from.clear();
-
-        // Fehlende 0en in from einfügen
-        for (int i = 0; i < countZero; i++) {
-            from.insertLeft(to.get(i));
+        for (int i = 0; i < onesBucket.size(); i++) {
+            to.insertLeft(onesBucket.get(i));
         }
-
-        // Clear the to bucket
-        to.clear();
     }
 
     public static void lastSort(BinaryBucket from, int[] to) {
