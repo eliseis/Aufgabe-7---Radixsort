@@ -13,28 +13,42 @@ public final class BinaryRadixSort {
     }
 
     public static void kSort(BinaryBucket from, BinaryBucket to, int binPlace) {
-        BinaryBucket zerosBucket = new BinaryBucket(from.size());
-        BinaryBucket onesBucket = new BinaryBucket(from.size());
+        BinaryBucket tempBucket = new BinaryBucket(from.size());
 
-        // Durchlaufe den from-Bucket und teile die Zahlen in die beiden Buckets auf
+        int zerosCount = 0;
+
+        // Durchlaufe den from-Bucket und zähle die Anzahl der Zahlen mit Ziffer 0
         for (int i = 0; i < from.size(); i++) {
             int number = from.get(i);
             int key = key(number, binPlace);
 
             if (key == 0) {
-                zerosBucket.insertLeft(number);
-            } else {
-                onesBucket.insertRight(number);
+                zerosCount++;
             }
         }
 
-        // Füge die Zahlen aus den beiden Buckets in den to-Bucket zusammen
-        for (int i = 0; i < zerosBucket.size(); i++) {
-            to.insertRight(zerosBucket.get(i));
+        // Füge die Zahlen mit Ziffer 0 in den tempBucket ein
+        for (int i = 0; i < zerosCount; i++) {
+            int number = from.get(i);
+            tempBucket.insertLeft(number);
         }
 
-        for (int i = 0; i < onesBucket.size(); i++) {
-            to.insertLeft(onesBucket.get(i));
+        // Füge die restlichen Zahlen mit Ziffer 1 in den tempBucket ein
+        for (int i = zerosCount; i < from.size(); i++) {
+            int number = from.get(i);
+            tempBucket.insertRight(number);
+        }
+
+        // Kopiere die Zahlen aus dem tempBucket zurück in den from-Bucket
+        for (int i = 0; i < tempBucket.size(); i++) {
+            int number = tempBucket.get(i);
+            from.insertLeft(number);
+        }
+
+        // Kopiere die Zahlen aus dem tempBucket in den to-Bucket
+        for (int i = 0; i < tempBucket.size(); i++) {
+            int number = tempBucket.get(i);
+            to.insertRight(number);
         }
     }
 
