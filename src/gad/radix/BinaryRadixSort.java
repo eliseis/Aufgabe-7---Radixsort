@@ -46,8 +46,7 @@ public final class BinaryRadixSort {
 
         // Negative Zahlen nach vorne in das Ergebnis-Array einsortieren
         int index = 0;
-        int secindex = 0;
-        for (int i = size - 1; i >= 0; i--) {
+        for (int i = 0; i < size; i++) {
             int number = from.get(i);
             if (number < 0) {
                 to[index++] = number;
