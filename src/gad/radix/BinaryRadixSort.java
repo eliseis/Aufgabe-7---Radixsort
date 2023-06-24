@@ -15,28 +15,24 @@ public final class BinaryRadixSort {
     public static void kSort(BinaryBucket from, BinaryBucket to, int binPlace) {
         BinaryBucket tempBucket = new BinaryBucket(from.size());
 
-        int zerosCount = 0;
-
-        // Durchlaufe den from-Bucket und zähle die Anzahl der Zahlen mit Ziffer 0
+        // Füge die Zahlen mit Ziffer 0 in den tempBucket ein
         for (int i = 0; i < from.size(); i++) {
             int number = from.get(i);
             int key = key(number, binPlace);
 
             if (key == 0) {
-                zerosCount++;
+                tempBucket.insertLeft(number);
             }
         }
 
-        // Füge die Zahlen mit Ziffer 0 in den tempBucket ein
-        for (int i = 0; i < zerosCount; i++) {
+        // Füge die Zahlen mit Ziffer 1 in den tempBucket ein
+        for (int i = 0; i < from.size(); i++) {
             int number = from.get(i);
-            tempBucket.insertLeft(number);
-        }
+            int key = key(number, binPlace);
 
-        // Füge die restlichen Zahlen mit Ziffer 1 in den tempBucket ein
-        for (int i = zerosCount; i < from.size(); i++) {
-            int number = from.get(i);
-            tempBucket.insertRight(number);
+            if (key == 1) {
+                tempBucket.insertRight(number);
+            }
         }
 
         // Kopiere die Zahlen aus dem tempBucket zurück in den from-Bucket
@@ -53,6 +49,9 @@ public final class BinaryRadixSort {
     }
 
     public static void lastSort(BinaryBucket from, int[] to) {
+        for (int i = 0; i < to.length; i++){
+            from.insertLeft(to[i]);
+        }
         int size = from.size();
 
         // Negative Zahlen nach vorne in das Ergebnis-Array einsortieren
