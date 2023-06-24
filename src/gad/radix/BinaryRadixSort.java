@@ -21,7 +21,7 @@ public final class BinaryRadixSort {
             int key = key(number, binPlace);
 
             if (key == 0) {
-                tempBucket.insertLeft(number);
+                to.insertLeft(number);
             }
         }
 
@@ -31,13 +31,8 @@ public final class BinaryRadixSort {
             int key = key(number, binPlace);
 
             if (key == 1) {
-                tempBucket.insertRight(number);
+                to.insertRight(number);
             }
-        }
-        // Kopiere die Zahlen aus dem tempBucket in den to-Bucket
-        for (int i = 0; i < tempBucket.size(); i++) {
-            int number = tempBucket.get(i);
-            to.insertLeft(number);
         }
     }
 
@@ -86,9 +81,7 @@ public final class BinaryRadixSort {
             result.logArray(bucket2.toArray());
 
             // Tausche bucket1 und bucket2 für den nächsten Durchlauf
-            BinaryBucket temp = bucket1;
             bucket1 = bucket2;
-            bucket2 = temp;
 
             // Leere den bucket2 für den nächsten Durchlauf
             bucket2.clear();

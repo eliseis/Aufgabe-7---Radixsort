@@ -44,6 +44,8 @@ public class BinaryBucket {
 	public void clear() {
 		mid = 0;
 		size = 0;
+		s = bucket.length - 1;
+
 	}
 	public int[] toArray() {
 		int[] array = new int[size];
