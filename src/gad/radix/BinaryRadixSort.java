@@ -34,7 +34,7 @@ public final class BinaryRadixSort {
                 tempBucket.insertRight(number);
             }
         }
-
+        from.clear();
         // Kopiere die Zahlen aus dem tempBucket zurück in den from-Bucket
         for (int i = 0; i < tempBucket.size(); i++) {
             int number = tempBucket.get(i);
@@ -80,21 +80,33 @@ public final class BinaryRadixSort {
         BinaryBucket bucket1 = new BinaryBucket(elements.length);
         BinaryBucket bucket2 = new BinaryBucket(elements.length);
 
-        for (int binPlace = 0; binPlace < 32; binPlace++) {
-            if (binPlace % 2 == 0) {
-                kSort(bucket1, bucket2, binPlace);
-                result.logArray(bucket2.toArray());
-            } else {
-                kSort(bucket2, bucket1, binPlace);
-                result.logArray(bucket1.toArray());
-            }
+        // Initialisiere den ersten Bucket mit den gegebenen Elementen
+        for (int element : elements) {
+            bucket1.insertLeft(element);
         }
 
+        // Führe kSort für jede binäre Ziffer einmal durch
+        for (int i = 0; i < 32; i++) {
+            kSort(bucket1, bucket2, i);
+
+            // Logge das Array nach jedem kSort-Aufruf
+            result.logArray(bucket2.toArray());
+
+            // Tausche bucket1 und bucket2 für den nächsten Durchlauf
+            BinaryBucket temp = bucket1;
+            bucket1 = bucket2;
+            bucket2 = temp;
+
+            // Leere den bucket2 für den nächsten Durchlauf
+            bucket2.clear();
+        }
+
+        // Führe lastSort für die negativen Zahlen aus
         lastSort(bucket1, elements);
     }
 
     public static void main(String[] args) {
-        int[] test = new int[10_000_000];
+        int[] test = new int[10];
         Random random = new Random();
         for (int i = 0; i < test.length; i++) {
             test[i] = random.nextInt(Integer.MAX_VALUE);
