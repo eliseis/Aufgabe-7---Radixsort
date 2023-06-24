@@ -77,15 +77,17 @@ public final class BinaryRadixSort {
             bucket2 = temp;
             bucket2.clear();
         }
+
+        // Führe lastSort direkt in das ursprüngliche Array elements aus
         lastSort(bucket1, elements);
     }
 
     public static void main(String[] args) {
         int[] test = new int[6];
         Random random = new Random();
-        //for (int i = 0; i < test.length; i++) {
-        //    test[i] = random.nextInt(Integer.MAX_VALUE);
-        //}
+        for (int i = 0; i < test.length; i++) {
+           test[i] = random.nextInt(Integer.MAX_VALUE);
+        }
         int[] testTwo = Arrays.copyOf(test, test.length);
 
         long start = System.nanoTime();
