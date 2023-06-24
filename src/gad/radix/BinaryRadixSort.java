@@ -36,6 +36,9 @@ public final class BinaryRadixSort {
         for (int i = 0; i < onesBucket.size(); i++) {
             to.insertRight(onesBucket.get(i));
         }
+        for (int i = 0; i < from.size(); i++){
+            from.insertLeft(to.get(i));
+        }
     }
 
     public static void lastSort(BinaryBucket from, int[] to) {
