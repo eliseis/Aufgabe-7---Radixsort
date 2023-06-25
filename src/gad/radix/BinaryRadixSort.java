@@ -64,7 +64,7 @@ public final class BinaryRadixSort {
     public static void sort(int[] elements, Result result) {
         BinaryBucket bucket1 = new BinaryBucket(elements.length);
         BinaryBucket bucket2 = new BinaryBucket(elements.length);
-        BinaryBucket temp = new BinaryBucket(elements.length);
+        BinaryBucket temp;
         for (int element : elements) {
             bucket1.insertLeft(element);
         }
