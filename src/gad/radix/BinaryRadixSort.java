@@ -64,11 +64,11 @@ public final class BinaryRadixSort {
     public static void sort(int[] elements, Result result) {
         BinaryBucket bucket1 = new BinaryBucket(elements.length);
         BinaryBucket bucket2 = new BinaryBucket(elements.length);
-
+        BinaryBucket temp = new BinaryBucket(elements.length);
         for (int element : elements) {
             bucket1.insertLeft(element);
         }
-        BinaryBucket temp = new BinaryBucket(elements.length);
+
         for (int i = 0; i < 32; i++) {
             kSort(bucket1, bucket2, i);
             result.logArray(bucket2.getBucket());
