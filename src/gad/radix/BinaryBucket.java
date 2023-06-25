@@ -62,7 +62,7 @@ public class BinaryBucket {
 		return array;
 	}
 	public int[] getBucket() {
-		return this.toArray();
+		return bucket;
 	}
 }
 
